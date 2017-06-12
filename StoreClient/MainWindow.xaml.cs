@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace StoreClient
 {
@@ -23,6 +25,25 @@ namespace StoreClient
         public MainWindow()
         {
             InitializeComponent();
+            try
+            {
+
+                MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shop;" +
+                                                            "port=3306;password=search4Here.;");
+                conn.Open();
+                BottomStatusBar.Background = new SolidColorBrush(Color.FromRgb(0, 122, 204));
+                StatusBarConnection.Text = "Connected to Database";
+            }
+            catch (Exception e)
+            {
+                //Connection Excpetion is writter Here.
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            BottomStatusBar.Background = new SolidColorBrush(Colors.Aqua);
+
         }
     }
 }

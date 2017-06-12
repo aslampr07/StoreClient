@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Plastic Mart" Height="360" Width="480">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
+                    <MenuItem Header="Connect" Click="MenuItem_Click"/>
                     <MenuItem Header="New">
                         <MenuItem Header="_Company"/>
                     </MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>
+        <StackPanel x:Name="BottomStatusBar" Background="#FFEE6202" VerticalAlignment="Bottom" Height="25">
+            <TextBlock x:Name="StatusBarConnection" Margin="10,5,0,0" Foreground="White" FontFamily="Segoe UI Semilight">Connection Unsuccesfull</TextBlock>
+        </StackPanel>
     </Grid>
 </Window>
