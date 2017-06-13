@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace StoreClient
 {
@@ -37,13 +38,9 @@ namespace StoreClient
             catch (Exception e)
             {
                 //Connection Excpetion is writter Here.
+                Debug.WriteLine(e.Message);
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            BottomStatusBar.Background = new SolidColorBrush(Colors.Aqua);
-
-        }
     }
 }
