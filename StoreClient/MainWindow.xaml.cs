@@ -42,5 +42,8 @@ namespace StoreClient
             }
         }
 
+        private void CompanyButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

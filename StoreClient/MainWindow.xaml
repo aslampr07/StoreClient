@@ -6,31 +6,72 @@
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
         Title="Plastic Mart" Height="360" Width="480" WindowState="Maximized">
-    <Grid>
-        <!--<DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="Connect"/>
-                    <MenuItem Header="New">
-                        <MenuItem Header="_Company"/>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="_Edit">
-                    
-                </MenuItem>
-            </Menu>
-        </DockPanel>-->
+    <Grid Margin="0">
+        
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" >
-            <Button>
-                <Image Source="img/Fa"></Image>
-            </Button>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="Connect"/>
+                    <MenuItem Header="New">
+                        <MenuItem Header="_Supplier"/>
+                        <MenuItem Header="_Customer"/>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Edit">
+
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#FFF5F6F7" >
+            <TabControl Background="White" BorderThickness="0">
+                <TabItem Header="Home" >
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="CompanyButton" Click="CompanyButton_Click" Background="{x:Null}" BorderThickness="0" Margin="6,0,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="img/Purchase Order_48px.png" Stretch="None"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="10" >Make</TextBlock>
+                                <TextBlock HorizontalAlignment="Center" FontSize="10">Invoice</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="{x:Null}" BorderThickness="0">
+                            <StackPanel Orientation="Vertical">
+                                <Image Stretch="None" Source="img/Add User Male_48px.png"/>
+                                <TextBlock  HorizontalAlignment="Center" FontSize="10" >Add</TextBlock>
+                                <TextBlock  HorizontalAlignment="Center" FontSize="10">Customer</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </TabItem>
+
+                <TabItem Header="Insert">
+                    <StackPanel Orientation="Horizontal">
+                        <Button  Click="CompanyButton_Click" Background="{x:Null}" BorderThickness="0" Margin="6,0,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <Image Source="img/Factory_48px.png" Stretch="None"/>
+                                <TextBlock HorizontalAlignment="Center" FontSize="10" >Add</TextBlock>
+                                <TextBlock HorizontalAlignment="Center" FontSize="10">Supplier</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="{x:Null}" BorderThickness="0">
+                            <StackPanel Orientation="Vertical">
+                                <Image Stretch="None" Source="img/Add User Male_48px.png"/>
+                                <TextBlock  HorizontalAlignment="Center" FontSize="10" >Add</TextBlock>
+                                <TextBlock  HorizontalAlignment="Center" FontSize="10">Customer</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
         </StackPanel>
-        <StackPanel Grid.Row="2" x:Name="BottomStatusBar" Background="#FFEE6202" VerticalAlignment="Bottom" Height="25">
+            
+        <Rectangle Grid.Row="2" Fill="#FFD6D6D6"></Rectangle>
+        <StackPanel Grid.Row="3" x:Name="BottomStatusBar" Background="#FFEE6202" VerticalAlignment="Bottom" Height="25">
             <TextBlock x:Name="StatusBarConnection" Margin="10,5,0,0" Foreground="White" FontFamily="Calibri" FontSize="14">Connection Unsuccesfull</TextBlock>
         </StackPanel>
     </Grid>

@@ -103,9 +103,14 @@
   <ItemGroup>
     <Resource Include="Shopping_Cart_Loaded.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="img\Factory_96px.png" />
+    <Resource Include="img\Factory_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Add User Male_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Purchase Order_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
