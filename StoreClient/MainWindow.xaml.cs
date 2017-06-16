@@ -42,8 +42,9 @@ namespace StoreClient
             }
         }
 
-        private void CompanyButton_Click(object sender, RoutedEventArgs e)
+        private void RibbonIcon_Click(object sender, RoutedEventArgs e)
         {
+            Debug.WriteLine("Click Worked like charm");
         }
     }
 }
