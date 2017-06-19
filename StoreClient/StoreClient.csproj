@@ -64,6 +64,9 @@
     <Compile Include="controls\RibbonIcon.xaml.cs">
       <DependentUpon>RibbonIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SupplierAdd.xaml.cs">
+      <DependentUpon>SupplierAdd.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +80,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="controls\RibbonIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SupplierAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Image File_48px_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="windows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Checkmark_96px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

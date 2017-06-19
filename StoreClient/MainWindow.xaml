@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
-        Title="Plastic Mart" Height="360" Width="480" WindowState="Maximized">
+        Title="Plastic Mart" Height="768" Width="1366" WindowState="Maximized" >
     <Grid>
-        
+        <!--The main rows of the window-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!--The menu bar-->
         <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -28,25 +29,27 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
+        <!--The ribbon bar-->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#FFF5F6F7" >
-            <TabControl Background="White" BorderThickness="0"  >
-                <TabItem Header="Home" >
-                    <StackPanel Orientation="Horizontal">
-                        <local:RibbonIcon TextFirst="New" TextSecond="Invoice" Click="RibbonIcon_Click" Source="img/Purchase Order_48px.png"/>
-                        <local:RibbonIcon TextFirst="Find" TextSecond="Product"/>
-                    </StackPanel>
-                </TabItem>
-
-                <TabItem Header="Insert">
-                    <StackPanel Orientation="Horizontal">
-                        <local:RibbonIcon TextFirst="Add" TextSecond="Supplier" Source="img/Factory_48px.png"/>
-                        <local:RibbonIcon TextFirst="Add" TextSecond="Customer" Source="img/Add User Male_48px.png"/>
-                    </StackPanel>
-                </TabItem>
-            </TabControl>
+            <StackPanel Orientation="Horizontal">
+                <local:RibbonIcon TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png"/>
+                <local:RibbonIcon TextFirst="Find" TextSecond="Product"/>
+            </StackPanel>
+            <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
+            <StackPanel Orientation="Horizontal" >
+                <local:RibbonIcon x:Name="AddSupplier" Click="AddSupplier_Click" TextFirst="Add" TextSecond="Supplier" Source="img/Factory_48px.png"/>
+                <local:RibbonIcon TextFirst="Add" TextSecond="Customer" Source="img/Add User Male_48px.png"/>
+            </StackPanel>
         </StackPanel>
-            
-        <Rectangle Grid.Row="2" Fill="#FFD6D6D6"></Rectangle>
+        <!--The main interface is here-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Width="400" Fill="#FFCFCFCF" />
+        </Grid>
+        <!--The bottom status panel for displaying infos-->
         <StackPanel Grid.Row="3" x:Name="BottomStatusBar" Background="#FFEE6202" VerticalAlignment="Bottom" Height="25">
             <TextBlock x:Name="StatusBarConnection" Margin="10,5,0,0" Foreground="White" FontFamily="Calibri" FontSize="14">Connection Unsuccesfull</TextBlock>
         </StackPanel>

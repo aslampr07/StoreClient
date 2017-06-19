@@ -23,13 +23,15 @@ namespace StoreClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MySqlConnection conn;
+
         public MainWindow()
         {
             InitializeComponent();
             try
             {
 
-                MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=shop;" +
+                conn = new MySqlConnection("server=localhost;user=root;database=shop;" +
                                                             "port=3306;password=search4Here.;");
                 conn.Open();
                 BottomStatusBar.Background = new SolidColorBrush(Color.FromRgb(0, 122, 204));
@@ -42,9 +44,10 @@ namespace StoreClient
             }
         }
 
-        private void RibbonIcon_Click(object sender, RoutedEventArgs e)
+        private void AddSupplier_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Click Worked like charm");
+            SupplierAdd x = new SupplierAdd(conn);
+            x.ShowDialog();
         }
     }
 }
