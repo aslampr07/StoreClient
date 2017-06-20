@@ -45,5 +45,10 @@ namespace StoreClient
             SaveButton.IsEnabled = false;
             DoneImage.Visibility = Visibility.Visible;
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            Debug.WriteLine(e.Key);
+        }
     }
 }

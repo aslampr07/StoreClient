@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
-        Title="Add Supplier" Height="500" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Add Supplier" Height="250" Width="600" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
+        KeyDown="Window_KeyDown"
+        FocusManager.FocusedElement="{Binding ElementName=NameBox}">
     <Grid Background="#FFF5F6F7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,7 +27,7 @@
             </StackPanel.Resources>
             <TextBlock x:Name="IDLabel" Text="Supplier Code:" FontSize="20"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <TextBlock Text="Name:" FontSize="20"/>
+                <TextBlock Text="Name:" FontSize="20" />
                 <TextBox x:Name="NameBox" Margin="78,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
