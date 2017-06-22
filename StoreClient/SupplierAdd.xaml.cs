@@ -34,6 +34,11 @@ namespace StoreClient
             IDLabel.Text += string.Format(" {0}", x);
         }
 
+        /// <summary>
+        /// Excuted when the save button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             string name = NameBox.Text;
@@ -43,6 +48,7 @@ namespace StoreClient
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             SaveButton.IsEnabled = false;
+            //Set the done image to checkmark
             DoneImage.Visibility = Visibility.Visible;
         }
 

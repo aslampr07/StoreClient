@@ -49,5 +49,11 @@ namespace StoreClient
             SupplierAdd x = new SupplierAdd(conn);
             x.ShowDialog();
         }
+
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            ItemAdd x = new ItemAdd();
+            x.ShowDialog();
+        }
     }
 }

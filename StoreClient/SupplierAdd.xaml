@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="Add Supplier" Height="250" Width="600" 
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
-        KeyDown="Window_KeyDown"
         FocusManager.FocusedElement="{Binding ElementName=NameBox}">
     <Grid Background="#FFF5F6F7">
         <Grid.ColumnDefinitions>
@@ -40,7 +39,8 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Width="150" Background="#FFEEEEEE">
-            <Button x:Name="SaveButton" Margin="29,34,29,0" Height="28" Click="SaveButton_Click">Save</Button>
+            <!--The isenabled is binded with the namebox-->
+            <Button x:Name="SaveButton" Margin="29,34,29,0" Height="28" Click="SaveButton_Click" IsEnabled="{Binding ElementName=NameBox, Path=Text.Length, Mode=OneWay}">Save</Button>
             <Image x:Name="DoneImage" Visibility="Hidden" Source="img/Checkmark_96px.png" Height="80" Margin="35,46,33,0"/>
         </StackPanel>
     </Grid>

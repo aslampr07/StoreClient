@@ -64,9 +64,16 @@
     <Compile Include="controls\RibbonIcon.xaml.cs">
       <DependentUpon>RibbonIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemAdd.xaml.cs">
+      <DependentUpon>ItemAdd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SupplierAdd.xaml.cs">
       <DependentUpon>SupplierAdd.xaml</DependentUpon>
     </Compile>
+    <Page Include="ItemAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,9 +125,6 @@
     <Resource Include="Shopping_Cart_Loaded.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\Factory_48px.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="img\Add User Male_48px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Search_48px_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Add Tag_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Factory_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
