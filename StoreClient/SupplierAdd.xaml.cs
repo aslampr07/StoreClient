@@ -28,7 +28,8 @@ namespace StoreClient
             conn = co;
             InitializeComponent();
             //For getting the next Autoincrement variable
-            string sql = "SELECT `AUTO_INCREMENT`FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'Shop' AND TABLE_NAME = 'Supplier'";
+            string sql = "SELECT `AUTO_INCREMENT`FROM INFORMATION_SCHEMA.TABLES " +
+                "WHERE TABLE_SCHEMA = 'Shop' AND TABLE_NAME = 'Supplier'";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             object x = cmd.ExecuteScalar();
             IDLabel.Text += string.Format(" {0}", x);
@@ -44,7 +45,8 @@ namespace StoreClient
             string name = NameBox.Text;
             string place = PlaceBox.Text;
             string phone = PhoneBox.Text;
-            string sql = string.Format("INSERT INTO Supplier(Name, Place, Phone) VALUES(\"{0}\",\"{1}\",\"{2}\");", name, place, phone);
+            string sql = string.Format("INSERT INTO Supplier(Name, Place, Phone) " +
+                "VALUES(\"{0}\",\"{1}\",\"{2}\");", name, place, phone);
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             SaveButton.IsEnabled = false;

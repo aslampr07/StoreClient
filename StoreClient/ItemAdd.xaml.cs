@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System.Diagnostics;
+using System.Globalization;
 
 namespace StoreClient
 {
@@ -19,9 +22,72 @@ namespace StoreClient
     /// </summary>
     public partial class ItemAdd : Window
     {
-        public ItemAdd()
+        private MySqlConnection conn;
+
+        private class SupplierItem
+        {
+            public string DisplayString { get; set; }
+            public int ID { get; set; }
+        }
+        public ItemAdd(MySqlConnection c)
         {
             InitializeComponent();
+            conn = c;
+            //For retreaving the id and name for the supplier dropdown list.
+            //Currently databinding is not used to populate the list.
+            //Please change the below code to MVVM approach.
+            string str = "SELECT id, name, phone FROM Supplier";
+            MySqlCommand cmd = new MySqlCommand(str, conn);
+            MySqlDataReader vals = cmd.ExecuteReader();
+            while (vals.Read())
+            {
+                //The SupplierItem is classes is added to the combolist
+                SupplierItem item = new SupplierItem()
+                {
+                    DisplayString = vals.GetInt32("id") + " - " + vals.GetString("name"),
+                    ID = vals.GetInt32("id")
+                };
+                supplierlist.Items.Add(item);
+            }
+            vals.Close();
+            //Setting the display property for the supplierlist combobox.
+            supplierlist.DisplayMemberPath = "DisplayString";
+            //For retreaving the next autoincrement value of ID coloumn from the Product table
+            str = "SELECT `AUTO_INCREMENT`FROM INFORMATION_SCHEMA.TABLES " +
+                "WHERE TABLE_SCHEMA = 'Shop' AND TABLE_NAME = 'Product'";
+            cmd = new MySqlCommand(str, conn);
+            object x = cmd.ExecuteScalar();
+            IDLabel.Text += string.Format(" {0}", x);
+        }
+
+        //Requires MVVM here.
+        private void PriceBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            bool status = float.TryParse(PriceBox.Text, out float price);
+            if (status)
+            {
+                float wholeSalePrice = (price + (price * 0.1f));
+                float retailPrice = (wholeSalePrice + (wholeSalePrice * 0.3f));
+                WholesaleBox.Text = wholeSalePrice.ToString();
+                RetailBox.Text = retailPrice.ToString();
+            }
+        }
+
+        //Event on save button, adding everything to the database.
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Findig the ID of the selected item on the supplierlist combobox.
+            int id = ((SupplierItem)supplierlist.SelectedItem).ID;
+            string name = NameBox.Text;
+            float price = float.Parse(PriceBox.Text);
+            float wholesale = float.Parse(WholesaleBox.Text);
+            float retail = float.Parse(RetailBox.Text);
+            string str = string.Format("INSERT INTO Product(suppID,name,companyprice,wholesaleprice,retailprice) " +
+                "VALUES ({0},'{1}',{2},{3},{4})",id,name,price,wholesale,retail);
+            MySqlCommand cmd = new MySqlCommand(str, conn);
+            cmd.ExecuteNonQuery();
+            ((Button)sender).IsEnabled = false;
+            DoneImage.Visibility = Visibility.Visible;
         }
     }
 }

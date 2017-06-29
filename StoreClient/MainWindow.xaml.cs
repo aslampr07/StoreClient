@@ -30,7 +30,6 @@ namespace StoreClient
             InitializeComponent();
             try
             {
-
                 conn = new MySqlConnection("server=localhost;user=root;database=shop;" +
                                                             "port=3306;password=search4Here.;");
                 conn.Open();
@@ -52,7 +51,7 @@ namespace StoreClient
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            ItemAdd x = new ItemAdd();
+            ItemAdd x = new ItemAdd(conn);
             x.ShowDialog();
         }
     }
