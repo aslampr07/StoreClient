@@ -45,14 +45,20 @@ namespace StoreClient
 
         private void AddSupplier_Click(object sender, RoutedEventArgs e)
         {
-            SupplierAdd x = new SupplierAdd(conn);
-            x.ShowDialog();
+            SupplierAdd newCust = new SupplierAdd(conn);
+            newCust.ShowDialog();
         }
 
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
-            ItemAdd x = new ItemAdd(conn);
-            x.ShowDialog();
+            ItemAdd newCust = new ItemAdd(conn);
+            newCust.ShowDialog();
+        }
+
+        private void AddCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerAdd newCust = new CustomerAdd(conn);
+            newCust.ShowDialog();
         }
     }
 }

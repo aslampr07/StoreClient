@@ -28,6 +28,7 @@ namespace StoreClient
         {
             public string DisplayString { get; set; }
             public int ID { get; set; }
+
         }
         public ItemAdd(MySqlConnection c)
         {
@@ -57,7 +58,7 @@ namespace StoreClient
                 "WHERE TABLE_SCHEMA = 'Shop' AND TABLE_NAME = 'Product'";
             cmd = new MySqlCommand(str, conn);
             object x = cmd.ExecuteScalar();
-            IDLabel.Text += string.Format(" {0}", x);
+            IDLabel.Text = string.Format("Item Code: {0}", x);
         }
 
         //Requires MVVM here.
@@ -88,6 +89,22 @@ namespace StoreClient
             cmd.ExecuteNonQuery();
             ((Button)sender).IsEnabled = false;
             DoneImage.Visibility = Visibility.Visible;
+        }
+        
+        //Caution Dirty code below.
+        private void NewButton_Click(object sender, RoutedEventArgs e)
+        {
+            string str = "SELECT `AUTO_INCREMENT`FROM INFORMATION_SCHEMA.TABLES " +
+                "WHERE TABLE_SCHEMA = 'Shop' AND TABLE_NAME = 'Product'";
+            MySqlCommand  cmd = new MySqlCommand(str, conn);
+            object x = cmd.ExecuteScalar();
+            IDLabel.Text = string.Format("Item Code: {0}", x);
+            NameBox.Clear();
+            PriceBox.Clear();
+            WholesaleBox.Clear();
+            RetailBox.Clear();
+            SaveButton.IsEnabled = true;
+            DoneImage.Visibility = Visibility.Hidden;
         }
     }
 }

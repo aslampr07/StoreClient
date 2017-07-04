@@ -23,7 +23,7 @@
                     <Setter Property="Width" Value="250"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock x:Name="IDLabel" Text="Product Code:"/>
+            <TextBlock x:Name="IDLabel" Text="Item Code:"/>
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Text="Supplier:"/>
                 <ComboBox x:Name="supplierlist" Width="248" SelectedIndex="-1" 
@@ -59,7 +59,7 @@
                     </Style>
                 </Button.Style>
             </Button>
-            <Button Width="100" Content="New" Margin="25,26,25,0" Height="26"/>
+            <Button Width="100" x:Name="NewButton" Content="New" Margin="25,26,25,0" Height="26" Click="NewButton_Click"/>
             <Image x:Name="DoneImage" Visibility="Hidden" Source="img/Checkmark_96px.png" Height="80" Margin="35,46,33,0"/>
         </StackPanel>
     </Grid>

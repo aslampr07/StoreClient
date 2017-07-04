@@ -38,7 +38,8 @@
             <StackPanel Orientation="Horizontal" >
                 <local:RibbonIcon x:Name="AddItem" TextFirst="Add" TextSecond="Item" Source="img/Add Tag_48px.png"
                                   Click="AddItem_Click"/>
-                <local:RibbonIcon TextFirst="Add" TextSecond="Customer" Source="img/Add User Male_48px.png"/>
+                <local:RibbonIcon x:Name="AddCustomer" TextFirst="Add" TextSecond="Customer" Source="img/Add User Male_48px.png"
+                                  Click="AddCustomer_Click"/>
                 <local:RibbonIcon x:Name="AddSupplier" TextFirst="Add" TextSecond="Supplier" Source="img/Factory_48px.png" 
                                   Click="AddSupplier_Click"/>
             </StackPanel>
