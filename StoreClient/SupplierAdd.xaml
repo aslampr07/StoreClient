@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
-        Title="Add Supplier" Height="250" Width="600" 
+        Title="New Supplier" Height="250" Width="600" 
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         FocusManager.FocusedElement="{Binding ElementName=NameBox}">
     <Grid Background="#FFF5F6F7">
