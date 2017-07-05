@@ -22,21 +22,22 @@
                     <Setter Property="FontSize" Value="20"/>
                     <Setter Property="Width" Value="250"/>
                     <Setter Property="Margin" Value="78,0,0,0"/>
+                    <Setter Property="AcceptsTab" Value="True"/>
                 </Style>
             </StackPanel.Resources>
             <TextBlock x:Name="IDLabel" Text="Customer Code:"/>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                 <TextBlock Text="Name:"/>
-                <TextBox x:Name="NameBox" Margin="78,0,0,0"/>
+                <TextBox x:Name="NameBox" Margin="78,0,0,0" Width="281"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
                 <TextBlock Text="Phone:"/>
-                <TextBox x:Name="PhoneBox" Margin="74,0,0,0"/>
+                <TextBox x:Name="PhoneBox" Margin="74,0,0,0" Width="281"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0,16,0,0">
                 <TextBlock Text="Address:" />
                 <TextBox x:Name="AddressBox" TextWrapping="Wrap" AcceptsReturn="True" 
-                         Margin="0,9,40,0" Height="84" Width="Auto"
+                         Margin="0,9,10,0" Height="84" Width="Auto"
                          FontSize="18"/>
             </StackPanel>
 
@@ -44,7 +45,7 @@
         <StackPanel Grid.Column="1" Width="150" Background="#FFEEEEEE">
             <!--The isenabled is binded with the namebox-->
             <Button x:Name="SaveButton" Margin="29,34,29,0" Height="28" Click="SaveButton_Click" IsEnabled="{Binding ElementName=NameBox, Path=Text.Length}">Save</Button>
-            <Image x:Name="DoneImage" Visibility="Hidden" Source="img/Checkmark_96px.png" Height="80" Margin="35,6,33,0"/>
+            <Image x:Name="DoneImage" Visibility="Hidden" Source="/img/Checkmark_96px.png" Height="80" Margin="35,6,33,0"/>
         </StackPanel>
     </Grid>
 </Window>

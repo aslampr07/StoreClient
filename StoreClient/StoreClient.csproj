@@ -64,20 +64,20 @@
     <Compile Include="controls\RibbonIcon.xaml.cs">
       <DependentUpon>RibbonIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerAdd.xaml.cs">
+    <Compile Include="Windows\CustomerAdd.xaml.cs">
       <DependentUpon>CustomerAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemAdd.xaml.cs">
+    <Compile Include="Windows\ItemAdd.xaml.cs">
       <DependentUpon>ItemAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SupplierAdd.xaml.cs">
+    <Compile Include="Windows\SupplierAdd.xaml.cs">
       <DependentUpon>SupplierAdd.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomerAdd.xaml">
+    <Page Include="Windows\CustomerAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ItemAdd.xaml">
+    <Page Include="Windows\ItemAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,7 +97,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SupplierAdd.xaml">
+    <Page Include="Windows\SupplierAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

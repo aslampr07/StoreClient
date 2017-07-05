@@ -28,7 +28,6 @@ namespace StoreClient
         {
             public string DisplayString { get; set; }
             public int ID { get; set; }
-
         }
         public ItemAdd(MySqlConnection c)
         {

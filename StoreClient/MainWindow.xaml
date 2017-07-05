@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
         mc:Ignorable="d"
-        Title="Plastic Mart" Height="768" Width="1366" WindowState="Maximized" >
+        Title="Plastic Mart" Height="768" Width="1366" WindowState="Maximized">
     <Grid>
         <!--The main rows of the window-->
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
         <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="Connect"/>
+                    <MenuItem Header="Connect/Disconnect"/>
                     <MenuItem Header="New">
                         <MenuItem Header="_Supplier"/>
                         <MenuItem Header="_Customer"/>
@@ -31,17 +31,17 @@
         <!--The ribbon bar-->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#FFF5F6F7" >
             <StackPanel Orientation="Horizontal">
-                <local:RibbonIcon TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png"/>
+                <local:RibbonIcon x:Name="AddInvoice" TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png" Click="AddInvoice_Click"/>
                 <local:RibbonIcon TextFirst="Find" TextSecond="Product" Source="img/Search_48px_1.png"/>
             </StackPanel>
             <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
             <StackPanel Orientation="Horizontal" >
-                <local:RibbonIcon x:Name="AddItem" TextFirst="Add" TextSecond="Item" Source="img/Add Tag_48px.png"
-                                  Click="AddItem_Click"/>
-                <local:RibbonIcon x:Name="AddCustomer" TextFirst="Add" TextSecond="Customer" Source="img/Add User Male_48px.png"
-                                  Click="AddCustomer_Click"/>
-                <local:RibbonIcon x:Name="AddSupplier" TextFirst="Add" TextSecond="Supplier" Source="img/Factory_48px.png" 
-                                  Click="AddSupplier_Click"/>
+                <local:RibbonIcon x:Name="AddItem" TextFirst="Add" TextSecond="Item" 
+                                  Source="img/Add Tag_48px.png" Click="AddItem_Click"/>
+                <local:RibbonIcon x:Name="AddCustomer" TextFirst="Add" TextSecond="Customer" 
+                                  Source="img/Add User Male_48px.png" Click="AddCustomer_Click"/>
+                <local:RibbonIcon x:Name="AddSupplier" TextFirst="Add" TextSecond="Supplier" 
+                                  Source="img/Factory_48px.png" Click="AddSupplier_Click"/>
             </StackPanel>
             <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
         </StackPanel>
@@ -51,6 +51,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
+            <TabControl x:Name="InvoiceTab">
+            </TabControl>
             <Rectangle Grid.Column="1" Width="400" Fill="#FFCFCFCF" />
 
         </Grid>

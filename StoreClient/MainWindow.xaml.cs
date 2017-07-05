@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace StoreClient
 {
@@ -43,6 +44,20 @@ namespace StoreClient
             }
         }
 
+        //This method occur when the user presses the X button on the window.
+        //Displays a message box
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            MessageBoxResult result = MessageBox.Show("Do you want to close this application?", 
+                "Confirm Exit", 
+                MessageBoxButton.OKCancel, MessageBoxImage.Question,MessageBoxResult.No);
+
+            if (result == MessageBoxResult.OK)
+                e.Cancel = false;
+        }
+
         private void AddSupplier_Click(object sender, RoutedEventArgs e)
         {
             SupplierAdd newCust = new SupplierAdd(conn);
@@ -59,6 +74,13 @@ namespace StoreClient
         {
             CustomerAdd newCust = new CustomerAdd(conn);
             newCust.ShowDialog();
+        }
+        
+
+        private void AddInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem test = new TabItem();
+            InvoiceTab.Items.Add(test);
         }
     }
 }

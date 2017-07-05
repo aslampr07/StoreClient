@@ -60,7 +60,7 @@
                 </Button.Style>
             </Button>
             <Button Width="100" x:Name="NewButton" Content="New" Margin="25,26,25,0" Height="26" Click="NewButton_Click"/>
-            <Image x:Name="DoneImage" Visibility="Hidden" Source="img/Checkmark_96px.png" Height="80" Margin="35,46,33,0"/>
+            <Image x:Name="DoneImage" Visibility="Hidden" Source="/img/Checkmark_96px.png" Height="80" Margin="35,46,33,0"/>
         </StackPanel>
     </Grid>
 </Window>
