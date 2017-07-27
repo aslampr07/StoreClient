@@ -35,6 +35,7 @@ namespace StoreClient
             get { return second.Text; }
             set { second.Text = value; }
         }
+
         public event RoutedEventHandler Click;
 
         public RibbonIcon()

@@ -16,6 +16,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.ComponentModel;
+using StoreClient.Windows;
 
 namespace StoreClient
 {
@@ -75,12 +76,11 @@ namespace StoreClient
             CustomerAdd newCust = new CustomerAdd(conn);
             newCust.ShowDialog();
         }
-        
 
-        private void AddInvoice_Click(object sender, RoutedEventArgs e)
+        private void UpdateStockButton_Click(object sender, RoutedEventArgs e)
         {
-            TabItem test = new TabItem();
-            InvoiceTab.Items.Add(test);
+            ProductPage product = new ProductPage(conn);
+            product.ShowDialog();
         }
     }
 }

@@ -36,7 +36,7 @@ namespace StoreClient
             //For retreaving the id and name for the supplier dropdown list.
             //Currently databinding is not used to populate the list.
             //Please change the below code to MVVM approach.
-            string str = "SELECT id, name, phone FROM Supplier";
+            string str = "SELECT id, name FROM Supplier";
             MySqlCommand cmd = new MySqlCommand(str, conn);
             MySqlDataReader vals = cmd.ExecuteReader();
             while (vals.Read())

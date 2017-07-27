@@ -70,6 +70,9 @@
     <Compile Include="Windows\ItemAdd.xaml.cs">
       <DependentUpon>ItemAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ProductPage.xaml.cs">
+      <DependentUpon>ProductPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SupplierAdd.xaml.cs">
       <DependentUpon>SupplierAdd.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="controls\RibbonIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,7 +150,9 @@
   <ItemGroup>
     <Resource Include="img\Image File_48px_5.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="img\Truck_48px.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Checkmark_96px.png" />
   </ItemGroup>
