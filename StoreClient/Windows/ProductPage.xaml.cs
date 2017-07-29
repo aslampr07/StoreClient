@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
+using StoreClient.SQL;
 
 namespace StoreClient.Windows
 {
@@ -20,31 +22,53 @@ namespace StoreClient.Windows
     /// </summary>
     public partial class ProductPage : Window
     {
-        private class SupplierItem
+        private SQLEngine connection;
+
+        public ProductPage(SQLEngine c)
         {
-            public string DisplayString { get; set; }
-            public int ID { get; set; }
-        }
-        private MySqlConnection conn;
-        public ProductPage(MySqlConnection c)
-        {
-            conn = c;
+            connection = c;
             InitializeComponent();
-            string str = "SELECT id, name FROM Supplier";
-            MySqlCommand cmd = new MySqlCommand(str, conn);
-            MySqlDataReader vals = cmd.ExecuteReader();
-            while (vals.Read())
+
+            //Populating the supplier List
+            List<Supplier> suppliers = connection.GetSupplierList();
+            foreach (Supplier item in suppliers)
             {
-                //The SupplierItem is classes is added to the combolist
-                SupplierItem item = new SupplierItem()
+                ListViewItem l = new ListViewItem()
                 {
-                    DisplayString = vals.GetInt32("id") + " - " + vals.GetString("name"),
-                    ID = vals.GetInt32("id")
+                    Content = item.ID + " - " + item.Name,
+                    Tag = item.ID
                 };
-                SupplierList.Items.Add(item);
+                SupplierList.Items.Add(l);
             }
-            vals.Close();
-            SupplierList.DisplayMemberPath = "DisplayString";
+
+
+            //To populate the Product ListView.
+            List<Product> products = connection.GetProductList();
+            foreach (Product item in products)
+            {
+                ListViewItem l = new ListViewItem()
+                {
+                    Content = item.ID + " - " + item.Name,
+                    Tag = item.ID
+                };
+                ProductList.Items.Add(l);
+            }
+        }
+
+        private void SupplierList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ProductList.Items.Clear();
+            uint suppid = (uint)((ListViewItem)SupplierList.SelectedItem).Tag;
+            List<Product> products = connection.GetProductList(suppid);
+            foreach (Product item in products)
+            {
+                ListViewItem l = new ListViewItem()
+                {
+                    Content = item.ID + " - " + item.Name,
+                    Tag = item.ID
+                };
+                ProductList.Items.Add(l);
+            }
         }
     }
 }

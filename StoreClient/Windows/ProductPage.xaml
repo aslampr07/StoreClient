@@ -5,20 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient.Windows"
         mc:Ignorable="d"
-        Title="Items" WindowStartupLocation="CenterScreen"
+        Title="Items" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Height="600" Width="1000">
-    <Grid>
+    <Grid Background="LightGray">
+        <Grid.Resources>
+            <Style TargetType="ListViewItem">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
-            <ListView x:Name="SupplierList" Width="200">
-                <ListView.Resources>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="FontSize" Value="20"/>
-                    </Style>
-                </ListView.Resources>
-            </ListView>
+        <ListView x:Name="SupplierList" Width="200" SelectionChanged="SupplierList_SelectionChanged"
+                  BorderThickness="1" Margin="0" SelectionMode="Single"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox  Width="200" x:Name="SearchBox" Text="Search" BorderThickness="3" Grid.Row="0" Height="30" FontSize="20" Background="#FFDEDEDE"/>
+            <ListView x:Name="ProductList" Width="200" Grid.Row="1"
+                  BorderThickness="1" Margin="0" SelectionMode="Single"/>
+        </Grid>
     </Grid>
 </Window>

@@ -61,9 +61,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SQL\Product.cs" />
+    <Compile Include="SQL\SQLEngine.cs" />
     <Compile Include="controls\RibbonIcon.xaml.cs">
       <DependentUpon>RibbonIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SQL\Supplier.cs" />
     <Compile Include="Windows\CustomerAdd.xaml.cs">
       <DependentUpon>CustomerAdd.xaml</DependentUpon>
     </Compile>

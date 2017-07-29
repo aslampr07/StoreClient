@@ -17,6 +17,7 @@ using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.ComponentModel;
 using StoreClient.Windows;
+using StoreClient.SQL;
 
 namespace StoreClient
 {
@@ -26,10 +27,12 @@ namespace StoreClient
     public partial class MainWindow : Window
     {
         private MySqlConnection conn;
+        private SQLEngine connection;
 
         public MainWindow()
         {
             InitializeComponent();
+            connection = new SQLEngine();
             try
             {
                 conn = new MySqlConnection("server=localhost;user=root;database=shop;" +
@@ -79,7 +82,7 @@ namespace StoreClient
 
         private void UpdateStockButton_Click(object sender, RoutedEventArgs e)
         {
-            ProductPage product = new ProductPage(conn);
+            ProductPage product = new ProductPage(connection);
             product.ShowDialog();
         }
     }
