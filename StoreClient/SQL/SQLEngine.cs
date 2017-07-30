@@ -20,17 +20,29 @@ namespace StoreClient.SQL
 
         public List<Product> GetProductList()
         {
-            string query = "SELECT * FROM Product";
-            return GetProductList(query);
+            string query = "SELECT id,name FROM Product";
+            return GetProducts(query);
         }
 
         public List<Product> GetProductList(uint SupplierID)
         {
-            string query = string.Format("SELECT * FROM Product WHERE SuppID = {0}", SupplierID);
-            return GetProductList(query);
+            string query = string.Format("SELECT id,name FROM Product WHERE SuppID = {0}", SupplierID);
+            return GetProducts(query);
         }
 
-        private List<Product> GetProductList(string query)
+        public List<Product> GetProductList(string searchQuery)
+        {
+            string query = string.Format("SELECT id,name FROM Product WHERE name LIKE '%{0}%' OR id LIKE '%{0}%'",searchQuery);
+            return GetProducts(query);
+        }
+
+        public List<Product> GetProductList(uint SupplierID, string searchQuery)
+        {
+            string query = string.Format("SELECT id,name FROM Product WHERE suppId = {0} AND (name LIKE '%{1}%' OR id LIKE '%{1}%')",SupplierID, searchQuery);
+            return GetProducts(query);
+        }
+
+        private List<Product> GetProducts(string query)
         {
             List<Product> products = new List<Product>();
             MySqlCommand cm = new MySqlCommand(query, connection);

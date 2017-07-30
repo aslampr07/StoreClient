@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using StoreClient.SQL;
+using System.Diagnostics;
 
 namespace StoreClient.Windows
 {
@@ -55,11 +56,49 @@ namespace StoreClient.Windows
             }
         }
 
+
+
         private void SupplierList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            //Clear the previos Listview items.
             ProductList.Items.Clear();
-            uint suppid = (uint)((ListViewItem)SupplierList.SelectedItem).Tag;
-            List<Product> products = connection.GetProductList(suppid);
+            SearchBox.Clear();
+            List<Product> products;
+
+            //When 'All' Item is selected.
+            if (SupplierList.SelectedIndex == 0)
+                products = connection.GetProductList();
+            else
+            {
+                uint suppid = (uint)((ListViewItem)SupplierList.SelectedItem).Tag;
+                products = connection.GetProductList(suppid);
+            }
+            foreach (Product item in products)
+            {
+                ListViewItem l = new ListViewItem()
+                {
+                    Content = item.ID + " - " + item.Name,
+                    Tag = item.ID
+                };
+                ProductList.Items.Add(l);
+            }
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProductList.Items.Clear();
+            List<Product> products;
+            if(SupplierList.SelectedIndex <= 1)
+            {
+                products = connection.GetProductList(SearchBox.Text);
+            }
+            else
+            {
+                uint suppid = (uint)((ListViewItem)SupplierList.SelectedItem).Tag;
+                products = connection.GetProductList(suppid,SearchBox.Text);
+            }
+
             foreach (Product item in products)
             {
                 ListViewItem l = new ListViewItem()

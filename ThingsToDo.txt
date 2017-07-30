@@ -1,0 +1,1 @@
+1: Risk of SQL Injection attack, the textbox sends raw text to the database. FIX IT

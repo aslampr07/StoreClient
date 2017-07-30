@@ -33,7 +33,8 @@
             
             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                 <local:RibbonIcon x:Name="AddInvoice" TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png" />
-                <local:RibbonIcon TextFirst="Find" TextSecond="Product" Source="img/Search_48px_1.png"/>
+                <local:RibbonIcon x:Name="FindProductButton" TextFirst="Find" TextSecond="Product"
+                                  Source="img/Search_48px_1.png" Click="FindProductButton_Click"/>
             </StackPanel>
             
             <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
@@ -46,13 +47,7 @@
                 <local:RibbonIcon x:Name="AddSupplier" TextFirst="Add" TextSecond="Supplier" 
                                   Source="img/Factory_48px.png" Click="AddSupplier_Click"/>
             </StackPanel>
-            
-            <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
-            
-            <StackPanel Orientation="Horizontal" Grid.Row="1" >
-                <local:RibbonIcon x:Name="UpdateStockButton" TextFirst="Update" TextSecond="Stock" Source="img/Truck_48px.png" Click="UpdateStockButton_Click"/>
-            </StackPanel>
-            
+
             <Rectangle Width="1" Fill="#FFA0A0A0" Height="60" Margin="10,0"/>
         </StackPanel>
         <!--The main interface is here-->

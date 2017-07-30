@@ -80,7 +80,7 @@ namespace StoreClient
             newCust.ShowDialog();
         }
 
-        private void UpdateStockButton_Click(object sender, RoutedEventArgs e)
+        private void FindProductButton_Click(object sender, RoutedEventArgs e)
         {
             ProductPage product = new ProductPage(connection);
             product.ShowDialog();
