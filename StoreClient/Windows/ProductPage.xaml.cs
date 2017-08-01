@@ -57,7 +57,6 @@ namespace StoreClient.Windows
         }
 
 
-
         private void SupplierList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -108,6 +107,51 @@ namespace StoreClient.Windows
                 };
                 ProductList.Items.Add(l);
             }
+        }
+
+        private void ProductList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Product product;
+            if(ProductList.SelectedIndex != -1)
+            {
+                product = connection.GetProduct((uint)((ListViewItem)ProductList.SelectedItem).Tag);
+                IDLabel.Text = "Product ID: " + product.ID;
+                NameLabel.Text = product.Name;
+                PriceLabel.Text = "₹ " + product.CompanyPrice;
+                WholesaleLabel.Text = "₹ " + product.WholesalePrice;
+                RetailLabel.Text = "₹ " + product.RetailPrice;
+            }
+        }
+
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (sender.Equals(NameEditButton))
+            {
+                Debug.WriteLine("Name edit");
+                EditInput.PlacementTarget = NameLabel;
+            }
+            else if(sender.Equals(PriceEditButton))
+            {
+                Debug.WriteLine("Price edit");
+                EditInput.PlacementTarget = PriceLabel;
+            }
+            else if(sender.Equals(WholesaleEditButton))
+            {
+                Debug.WriteLine("Wholesale price edit");
+                EditInput.PlacementTarget = WholesaleLabel;
+            }
+            else if(sender.Equals(RetailEditButton))
+            {
+                Debug.WriteLine("Retail price edit");
+                EditInput.PlacementTarget = RetailLabel;
+            }
+            EditInput.IsOpen = !EditInput.IsOpen;
+            InputBox.Focus();
+            InputBox.Clear();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

@@ -18,12 +18,21 @@ namespace StoreClient.SQL
         }
 
 
+        /// <summary>
+        /// Return the name and id of the entire Product table
+        /// </summary>
+        /// <returns></returns>
         public List<Product> GetProductList()
         {
             string query = "SELECT id,name FROM Product";
             return GetProducts(query);
         }
 
+        /// <summary>
+        /// Return the name and if of the entire product table with a particular supplier ID
+        /// </summary>
+        /// <param name="SupplierID">Supplier ID of the prouduct</param>
+        /// <returns></returns>
         public List<Product> GetProductList(uint SupplierID)
         {
             string query = string.Format("SELECT id,name FROM Product WHERE SuppID = {0}", SupplierID);
@@ -83,6 +92,26 @@ namespace StoreClient.SQL
                 }
             }
             return suppliers;
+        }
+
+        public Product GetProduct(uint ProductID)
+        {
+            string q = string.Format("SELECT * FROM Product WHERE id = {0}", ProductID);
+            Product product;
+            MySqlCommand cm = new MySqlCommand(q, connection);
+            using (MySqlDataReader data = cm.ExecuteReader())
+            {
+                data.Read();
+                product = new Product()
+                {
+                    Name = data["name"].ToString(),
+                    ID = ProductID,
+                    CompanyPrice = data.GetDouble("companyPrice"),
+                    WholesalePrice = data.GetDouble("wholesalePrice"),
+                    RetailPrice = data.GetDouble("retailPrice")
+                };
+            }
+            return product;
         }
 
     }

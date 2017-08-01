@@ -1,1 +1,6 @@
-1: Risk of SQL Injection attack, the textbox sends raw text to the database. FIX IT
+1: Risk of SQL Injection attack, the textbox sends raw text to the database. FIX IT!
+2: Windows/ProductPage.xaml looks very ugly.
+3: Add opening stock textbox to Windows/ItemAdd.xaml
+4: Fix the exceptions of the textbox in Windows/ItemAdd.xaml
+5: Include GSTN for supplier.
+6: Remove all SQL from the GUI Code.

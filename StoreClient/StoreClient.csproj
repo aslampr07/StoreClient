@@ -168,5 +168,11 @@
   <ItemGroup>
     <Resource Include="img\Factory_48px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Edit_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Save_48px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

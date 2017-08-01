@@ -10,5 +10,8 @@ namespace StoreClient.SQL
     {
         public string Name { get; set; }
         public uint ID { get; set; }
+        public double CompanyPrice { get; set; }
+        public double WholesalePrice { get; set; }
+        public double RetailPrice { get; set; }
     }
 }
