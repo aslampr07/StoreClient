@@ -4,3 +4,4 @@
 4: Fix the exceptions of the textbox in Windows/ItemAdd.xaml
 5: Include GSTN for supplier.
 6: Remove all SQL from the GUI Code.
+7: Convert Queries to LINQ

@@ -125,33 +125,55 @@ namespace StoreClient.Windows
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
+            //For setting the Location of the Edit Box Popup.
             if (sender.Equals(NameEditButton))
             {
-                Debug.WriteLine("Name edit");
-                EditInput.PlacementTarget = NameLabel;
+                EditPopup.PlacementTarget = NameLabel;
             }
             else if(sender.Equals(PriceEditButton))
             {
-                Debug.WriteLine("Price edit");
-                EditInput.PlacementTarget = PriceLabel;
+                EditPopup.PlacementTarget = PriceLabel;
             }
             else if(sender.Equals(WholesaleEditButton))
             {
-                Debug.WriteLine("Wholesale price edit");
-                EditInput.PlacementTarget = WholesaleLabel;
+                EditPopup.PlacementTarget = WholesaleLabel;
             }
             else if(sender.Equals(RetailEditButton))
             {
-                Debug.WriteLine("Retail price edit");
-                EditInput.PlacementTarget = RetailLabel;
+                EditPopup.PlacementTarget = RetailLabel;
             }
-            EditInput.IsOpen = !EditInput.IsOpen;
+            EditPopup.IsOpen = !EditPopup.IsOpen;
             InputBox.Focus();
             InputBox.Clear();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            EditPopup.IsOpen = false;
+            uint id = (uint)((ListViewItem)(ProductList.SelectedItem)).Tag;
+
+
+            //This is to identify where is the popup corrently opened.
+            if (((TextBlock)EditPopup.PlacementTarget).Equals(NameLabel))
+            {
+                connection.UpdateProduct(SQLEngine.ProductAttributes.Name,id, InputBox.Text);
+                NameLabel.Text = InputBox.Text;
+            }
+            else if (((TextBlock)EditPopup.PlacementTarget).Equals(PriceLabel))
+            {
+                connection.UpdateProduct(SQLEngine.ProductAttributes.CompanyPrice, id, InputBox.Text);
+                PriceLabel.Text = "₹ " + InputBox.Text; 
+            }
+            else if (((TextBlock)EditPopup.PlacementTarget).Equals(WholesaleLabel))
+            {
+                connection.UpdateProduct(SQLEngine.ProductAttributes.WholesalePrice, id, InputBox.Text);
+                WholesaleLabel.Text = "₹ " + InputBox.Text;
+            }
+            else if (((TextBlock)EditPopup.PlacementTarget).Equals(RetailLabel))
+            {
+                connection.UpdateProduct(SQLEngine.ProductAttributes.RetailPrice, id, InputBox.Text);
+                RetailLabel.Text = "₹ " + InputBox.Text;
+            }
         }
     }
 }

@@ -45,7 +45,7 @@
                     <EventSetter Event="Click" Handler="EditButtonClick"/>
                 </Style>
             </Grid.Resources>
-            <Popup x:Name="EditInput" IsOpen="False" PopupAnimation="Scroll"
+            <Popup x:Name="EditPopup" IsOpen="False" PopupAnimation="Slide"
                    AllowsTransparency="True"
                    StaysOpen="False">
                 <Border BorderThickness="3">
@@ -56,7 +56,7 @@
                         <TextBox x:Name="InputBox" Width="200" Height="30" FontSize="20"/>
                         <Button x:Name="SaveButton" BorderThickness="0"
                                 Background="{x:Null}" Click="SaveButton_Click">
-                            <Image Source="/StoreClient;component/img/Save_48px.png" Height="29"/>
+                            <Image ToolTip="Save" Source="/StoreClient;component/img/Save_48px.png" Height="29"/>
                         </Button>
                     </StackPanel>
                 </Border>

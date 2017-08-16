@@ -61,14 +61,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controls\CreditDetails.xaml.cs">
+      <DependentUpon>CreditDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SQL\Credit.cs" />
+    <Compile Include="SQL\Customer.cs" />
     <Compile Include="SQL\Product.cs" />
     <Compile Include="SQL\SQLEngine.cs" />
     <Compile Include="controls\RibbonIcon.xaml.cs">
       <DependentUpon>RibbonIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SQL\SQLEngine.ProductAttributes.cs" />
     <Compile Include="SQL\Supplier.cs" />
     <Compile Include="Windows\CustomerAdd.xaml.cs">
       <DependentUpon>CustomerAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CustomerWindow.xaml.cs">
+      <DependentUpon>CustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ItemAdd.xaml.cs">
       <DependentUpon>ItemAdd.xaml</DependentUpon>
@@ -79,7 +88,15 @@
     <Compile Include="Windows\SupplierAdd.xaml.cs">
       <DependentUpon>SupplierAdd.xaml</DependentUpon>
     </Compile>
+    <Page Include="controls\CreditDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\CustomerAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\Save_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Customer_48px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

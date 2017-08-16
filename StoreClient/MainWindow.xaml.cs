@@ -85,5 +85,11 @@ namespace StoreClient
             ProductPage product = new ProductPage(connection);
             product.ShowDialog();
         }
+
+        private void ViewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerWindow customer = new CustomerWindow(connection);
+            customer.ShowDialog();
+        }
     }
 }
