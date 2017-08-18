@@ -40,29 +40,70 @@ namespace StoreClient.Windows
             CustomerList.ItemsSource = ListCustomer;
         }
 
+        private int SelectedID;
         private void CustomerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            CreditList.Children.Clear();
             if (CustomerList.SelectedIndex != -1)
             {
-                CreditList.Children.Clear();
                 Customer c = ((Customer)CustomerList.SelectedItem);
                 IDBlock.Text = "ID: " + c.ID.ToString();
+                SelectedID = c.ID;
                 NameBlock.Text = c.Name;
                 PhoneBlock.Text = "Phone: " + c.Phone;
                 AddressBlock.Text = c.Address;
                 //Get the list of the credit of a customer
-                List<Credit> credits = connection.GetCreditList(c.ID);
-                BalanceBlock.Text = "Balance ₹ " + credits.Sum(item => item.Amount).ToString();
-                foreach (Credit item in credits)
-                {
-                    CreditDetails details = new CreditDetails
-                    {
-                        Date = item.WrittenTime.ToString("dd/MM/yyyy hh:mm tt"),
-                        Amount = item.Amount
-                    };
-                    CreditList.Children.Insert(0,details);
-                }
+                RefreshCreditList();
             }
+        }
+
+        private void RefreshCreditList()
+        {
+            CreditList.Children.Clear();
+            List<Credit> credits = connection.GetCreditList(SelectedID);
+            BalanceBlock.Text = "Balance ₹ " + credits.Sum(item => item.Amount).ToString();
+            foreach (Credit item in credits)
+            {
+                CreditDetails details = new CreditDetails
+                {
+                    Date = item.WrittenTime.ToString("dd/MM/yyyy hh:mm tt"),
+                    Amount = item.Amount
+                };
+                CreditList.Children.Insert(0, details);
+            }
+        }
+
+        private bool transactionButton;
+        private void TransactionButton_click(object sender, RoutedEventArgs e)
+        {
+            TransactionPopup.IsOpen = true;
+            TransactionInputBox.Text = "";
+            //Executes when paybuttons when is pressed.
+            if (sender.Equals(PayButton))
+            {
+                transactionButton = true;
+            }
+            //Executes when creditbutton is pressed.
+            else if(sender.Equals(CreditButton))
+            {
+                transactionButton = false;
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            double amount;
+            if(transactionButton)
+            {
+                amount = -double.Parse(TransactionInputBox.Text);
+            }
+            else
+            {
+                amount = double.Parse(TransactionInputBox.Text);
+            }
+            connection.SetCredit(SelectedID, amount);
+            TransactionPopup.IsOpen = false;
+            RefreshCreditList();
         }
     }
 }

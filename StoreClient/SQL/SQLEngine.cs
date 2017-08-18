@@ -204,5 +204,12 @@ namespace StoreClient.SQL
             return CreditList;
         }
 
+        public void SetCredit(int CusID, double Amount)
+        {
+            string query = string.Format("INSERT INTO CREDIT(cusid, amount, writtentime) values({0}, {1}, NOW())", CusID, Amount);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            cm.ExecuteNonQuery();
+        }
+
     }
 }

@@ -27,11 +27,11 @@
         </Grid>
         <Border Grid.Column="1" Padding="10">
             <StackPanel Margin="0">
-                <TextBlock x:Name="IDBlock" Text="ID: 1001" FontSize="36"/>
-                <TextBlock x:Name="NameBlock" Text="Aslam " FontSize="30" Margin="0,10,0,0"/>
-                <TextBlock x:Name="PhoneBlock" Text="Phone: 8089709076" FontSize="30" Margin="0,40,0,0"/>
+                <TextBlock x:Name="IDBlock" Text="ID: " FontSize="36"/>
+                <TextBlock x:Name="NameBlock" Text=" " FontSize="30" Margin="0,10,0,0"/>
+                <TextBlock x:Name="PhoneBlock" Text="Phone: " FontSize="30" Margin="0,40,0,0"/>
                 <TextBlock Text="Address:" FontSize="30" Margin="0,40,0,0"/>
-                <TextBlock x:Name="AddressBlock" FontSize="30" Text="dafka"/>
+                <TextBlock x:Name="AddressBlock" FontSize="30" Text=""/>
             </StackPanel>
         </Border>
         <Grid Grid.Column="3" Background="#FFF0F9FD" >
@@ -39,7 +39,42 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="BalanceBlock" Text="" FontSize="20"/>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="BalanceBlock" Text="" FontSize="20" Grid.Column="0"/>
+                <StackPanel x:Name="TopPanel" Orientation="Horizontal" Grid.Column="1">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <EventSetter Event="Click" Handler="TransactionButton_click"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button ToolTip="Pay" x:Name="PayButton" Background="{x:Null}" Height="40" Width="50" BorderThickness="0">
+                        <Image Source="/StoreClient;component/img/Request Money_48px.png"/>
+                    </Button>
+                    <Button ToolTip="Credit" x:Name="CreditButton" Background="{x:Null}" Height="40" Width="50" BorderThickness="0">
+                        <Image Source="/StoreClient;component/img/Initiate Money Transfer_48px.png"/>
+                    </Button>
+                </StackPanel>
+                <Popup x:Name="TransactionPopup" IsOpen="false" PopupAnimation="Slide"
+                   AllowsTransparency="True"
+                   StaysOpen="False" PlacementTarget="{Binding ElementName=BalanceBlock}" Placement="Bottom">
+                    <Border BorderThickness="3">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="5" Opacity="0.5" />
+                        </Border.Effect>
+                        <StackPanel Orientation="Horizontal" Background="White">
+                            <TextBox x:Name="TransactionInputBox" Width="200" Height="30" FontSize="20"/>
+                            <Button x:Name="SaveButton" BorderThickness="0"
+                                Background="{x:Null}" Click="SaveButton_Click">
+                                <Image ToolTip="Save" Source="/StoreClient;component/img/Save_48px.png" Height="29"/>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
             <ScrollViewer Grid.Row="1">
                 <StackPanel x:Name="CreditList" >
                 </StackPanel>

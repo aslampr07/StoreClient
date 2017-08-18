@@ -194,5 +194,9 @@
   <ItemGroup>
     <Resource Include="img\Customer_48px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Initiate Money Transfer_48px.png" />
+    <Resource Include="img\Request Money_48px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
