@@ -43,6 +43,8 @@
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -63,6 +65,12 @@
     </ApplicationDefinition>
     <Compile Include="controls\CreditDetails.xaml.cs">
       <DependentUpon>CreditDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\InvoiceItemControl.xaml.cs">
+      <DependentUpon>InvoiceItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="controls\InvoiceSection.xaml.cs">
+      <DependentUpon>InvoiceSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="SQL\Credit.cs" />
     <Compile Include="SQL\Customer.cs" />
@@ -89,6 +97,14 @@
       <DependentUpon>SupplierAdd.xaml</DependentUpon>
     </Compile>
     <Page Include="controls\CreditDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\InvoiceItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="controls\InvoiceSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,6 +28,7 @@ namespace StoreClient.SQL
             return GetProducts(query);
         }
 
+
         /// <summary>
         /// Return the name and if of the entire product table with a particular supplier ID
         /// </summary>
@@ -106,15 +107,19 @@ namespace StoreClient.SQL
             MySqlCommand cm = new MySqlCommand(q, connection);
             using (MySqlDataReader data = cm.ExecuteReader())
             {
-                data.Read();
-                product = new Product()
+                if (data.Read())
                 {
-                    Name = data["name"].ToString(),
-                    ID = ProductID,
-                    CompanyPrice = data.GetDouble("companyPrice"),
-                    WholesalePrice = data.GetDouble("wholesalePrice"),
-                    RetailPrice = data.GetDouble("retailPrice")
-                };
+                    product = new Product()
+                    {
+                        Name = data["name"].ToString(),
+                        ID = ProductID,
+                        CompanyPrice = data.GetDouble("companyPrice"),
+                        WholesalePrice = data.GetDouble("wholesalePrice"),
+                        RetailPrice = data.GetDouble("retailPrice")
+                    };
+                }
+                else
+                    return null;
             }
             return product;
         }
@@ -152,7 +157,7 @@ namespace StoreClient.SQL
 
         public List<Customer> GetCustomers()
         {
-            string query = "SELECT * FROM Customer";
+            string query = "SELECT * FROM Customer ORDER BY name";
             return getCustomersList(query);
         }
 
@@ -207,6 +212,45 @@ namespace StoreClient.SQL
         public void SetCredit(int CusID, double Amount)
         {
             string query = string.Format("INSERT INTO CREDIT(cusid, amount, writtentime) values({0}, {1}, NOW())", CusID, Amount);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            cm.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Create a new row in invoice table and return the id of the last row
+        /// </summary>
+        /// <returns></returns>
+        public uint CreateInvoice()
+        {
+            string query = "INSERT INTO INVOICE(Invoicedate, cusid) VALUES(NOW(), 1013)";
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            cm.ExecuteNonQuery();
+
+            query = "SELECT MAX(ID) FROM INVOICE";
+            cm = new MySqlCommand(query, connection);
+            return (uint)cm.ExecuteScalar();
+        }
+
+        public void CreateInvoiceItem(uint InvoiceID, uint ItemID, int Quantity, double Amount)
+        {
+            string query = string.Format("INSERT INTO InvoiceItem(invoiceid, productid, quantity, amount) VALUES({0}, {1}, {2}, {3})",InvoiceID,ItemID,Quantity,Amount);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            cm.ExecuteNonQuery();
+        }
+
+        public decimal GetInvoiceTotal(uint InvoiceID)
+        {
+            string query = string.Format("SELECT SUM(Amount*Quantity) FROM InvoiceItem WHERE invoiceID = {0}", InvoiceID);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            object x = cm.ExecuteScalar();
+            if (x == DBNull.Value)
+                return 0;
+            return (decimal)cm.ExecuteScalar();
+        }
+
+        public void ChangeInvoiceOwner(int customerID, uint InvoiceID)
+        {
+            string query = string.Format("UPDATE Invoice SET CusID = {0} WHERE ID = {1}", customerID, InvoiceID);
             MySqlCommand cm = new MySqlCommand(query, connection);
             cm.ExecuteNonQuery();
         }

@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.ComponentModel;
 using StoreClient.Windows;
 using StoreClient.SQL;
+using StoreClient.controls;
 
 namespace StoreClient
 {
@@ -46,6 +47,8 @@ namespace StoreClient
                 //Connection Excpetion is writter Here.
                 Debug.WriteLine(e.Message);
             }
+            CustomerList.ItemsSource = connection.GetCustomers();
+            CustomerList.DisplayMemberPath = "Name";
         }
 
         //This method occur when the user presses the X button on the window.
@@ -90,6 +93,40 @@ namespace StoreClient
         {
             CustomerWindow customer = new CustomerWindow(connection);
             customer.ShowDialog();
+        }
+
+        private void AddInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            //Test starts here
+            TabItem tab = new TabItem
+            {
+                Header = "POSit",
+                BorderThickness = new Thickness(0)
+            };
+            InvoiceSection invoice = new InvoiceSection(connection);
+            tab.Content = invoice;
+            InvoiceTab.Items.Add(tab);
+            //Test end here.
+            InvoiceTab.SelectedIndex = InvoiceTab.Items.Count - 1;
+            InvoiceIDBlock.Text = "ID: " + invoice.ID.ToString();
+            CustomerList.SelectedIndex = 7;
+        }
+
+        private void InvoiceTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            uint id = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content).ID;
+            InvoiceIDBlock.Text = "ID: " + id;
+            TotalBlock.Text = "₹ " + connection.GetInvoiceTotal(id).ToString();
+        }
+
+        private void CustomerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (InvoiceTab.SelectedIndex != -1)
+            {
+                uint Invoiceid = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content).ID;
+                int customerID = ((Customer)CustomerList.SelectedItem).ID;
+                connection.ChangeInvoiceOwner(customerID: customerID, InvoiceID: Invoiceid);
+            }
         }
     }
 }

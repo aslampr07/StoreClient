@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="StoreClient.controls.InvoiceSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"  Background="#FFE8E8E8">
+    <Border Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Border BorderBrush="Black" BorderThickness="1" Padding="5" >
+                    <StackPanel>
+                        <TextBlock Text="ID / Alias" FontSize="18"/>
+                        <TextBox x:Name="IDInput" Width="100" Height="30" 
+                                 FontSize="16" Padding="4"
+                                 KeyDown="IDInput_KeyDown"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+                <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                    <Grid Margin="0,0,17,0">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*" MinWidth="100"/>
+                            <ColumnDefinition Width="65"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderThickness="1" Grid.Column="0" BorderBrush="Black">
+                            <TextBlock Text="No" HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" Grid.Column="1" BorderBrush="Black">
+                            <TextBlock Text="Name" HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" Grid.Column="2" BorderBrush="Black">
+                            <TextBlock Text="Qty." HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" Grid.Column="3" BorderBrush="Black">
+                            <TextBlock Text="Price" HorizontalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="1" Grid.Column="4" BorderBrush="Black">
+                            <TextBlock Text="Total" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                <ScrollViewer CanContentScroll="True">
+                    <StackPanel Margin="0,10,0,0" x:Name="ItemList" Height="420">
+                    </StackPanel>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

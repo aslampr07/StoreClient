@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StoreClient"
+        xmlns:controls="clr-namespace:StoreClient.controls"
         mc:Ignorable="d"
         Title="Plastic Mart" Height="768" Width="1366" WindowState="Maximized" Background="#FFCFCFCF" >
     <Grid>
@@ -31,7 +32,8 @@
         <!--The ribbon bar-->
         <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#FFF5F6F7" >
 
-            <local:RibbonIcon x:Name="AddInvoice" TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png" Margin="10,0,0,0" />
+            <local:RibbonIcon x:Name="AddInvoice" TextFirst="New" TextSecond="Invoice"  Source="img/Purchase Order_48px.png" Margin="10,0,0,0"
+                              Click="AddInvoice_Click"/>
             <local:RibbonIcon x:Name="FindProductButton" TextFirst="Find" TextSecond="Product"
                                   Source="img/Search_48px_1.png" Click="FindProductButton_Click"/>
 
@@ -59,16 +61,24 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <!-- Invoice Layout Here-->
-            <Grid Grid.Column="0" Background="White">
-            </Grid>
+            <StackPanel Grid.Column="0" Background="White">
+                <TabControl x:Name="InvoiceTab" BorderThickness="0" SelectionChanged="InvoiceTab_SelectionChanged">
+                </TabControl>
+            </StackPanel>
+            <!--Right Panel for bill summary-->
             <Grid Grid.Column="1" Width="400" Background="#FFCFCFCF">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="1" FontSize="72" Margin="0,0,10,10" HorizontalAlignment="Right">₹ 4352</TextBlock>
-
+                <StackPanel Grid.Row="0">
+                    <TextBlock x:Name="InvoiceIDBlock" FontSize="25" Margin="10,0,0,0"/>
+                    <ComboBox x:Name="CustomerList" Margin="50,9" Height="30" 
+                              HorizontalContentAlignment="Center" FontSize="18"
+                              SelectionChanged="CustomerList_SelectionChanged">
+                    </ComboBox>
+                </StackPanel>
+                <TextBlock x:Name="TotalBlock" Grid.Row="1" FontSize="72" Margin="0,0,10,10" HorizontalAlignment="Right">NaN</TextBlock>
             </Grid>
 
         </Grid>
