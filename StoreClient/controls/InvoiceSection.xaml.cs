@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using StoreClient.SQL;
 
+
 namespace StoreClient.controls
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace StoreClient.controls
     {
 
         public uint ID { get; set; }
+        public int CustomerListComboIndex { get; set; }
 
         private SQLEngine connection;
         public InvoiceSection(SQLEngine c)

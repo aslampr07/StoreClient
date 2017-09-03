@@ -157,7 +157,7 @@ namespace StoreClient.SQL
 
         public List<Customer> GetCustomers()
         {
-            string query = "SELECT * FROM Customer ORDER BY name";
+            string query = "SELECT * FROM Customer;";
             return getCustomersList(query);
         }
 
@@ -231,9 +231,20 @@ namespace StoreClient.SQL
             return (uint)cm.ExecuteScalar();
         }
 
-        public void CreateInvoiceItem(uint InvoiceID, uint ItemID, int Quantity, double Amount)
+        public uint CreateInvoiceItem(uint InvoiceID, uint ItemID, int Quantity, double Amount)
         {
             string query = string.Format("INSERT INTO InvoiceItem(invoiceid, productid, quantity, amount) VALUES({0}, {1}, {2}, {3})",InvoiceID,ItemID,Quantity,Amount);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            cm.ExecuteNonQuery();
+
+            query = "SELECT MAX(ID) FROM InvoiceItem";
+            cm = new MySqlCommand(query, connection);
+            return (uint)cm.ExecuteScalar();
+        }
+
+        public void UpdateInvoiceItem(uint ItemID, int Quantity, double Amount)
+        {
+            string query = string.Format("UPDATE InvoiceItem SET Quantity = {0}, Amount = {1} WHERE ID = {2}", Quantity, Amount, ItemID);
             MySqlCommand cm = new MySqlCommand(query, connection);
             cm.ExecuteNonQuery();
         }
@@ -254,6 +265,7 @@ namespace StoreClient.SQL
             MySqlCommand cm = new MySqlCommand(query, connection);
             cm.ExecuteNonQuery();
         }
+
 
     }
 }

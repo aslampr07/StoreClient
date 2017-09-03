@@ -28,10 +28,15 @@
             <TextBox x:Name="ItemNameBox" Margin="0,0"/>
         </Border>
         <Border BorderThickness="0" Grid.Column="2" BorderBrush="Black">
-            <TextBox x:Name="ItemQuantityBox" Margin="0,0" KeyDown="ItemQuantityBox_KeyDown" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="ItemQuantityBox" Margin="0,0" KeyDown="ItemQuantityBox_KeyDown" 
+                     LostFocus="ItemQuantityBox_LostFocus"
+                     HorizontalContentAlignment="Right"/>
         </Border>
         <Border BorderThickness="0" Grid.Column="3" BorderBrush="Black">
-            <TextBox x:Name="ItemPriceBox" Margin="0,0" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="ItemPriceBox" Margin="0,0"
+                     LostFocus="ItemPriceBox_LostFocus"
+                     KeyDown="ItemPriceBox_KeyDown"
+                     HorizontalContentAlignment="Right"/>
         </Border>
         <Border BorderThickness="1" Grid.Column="4" BorderBrush="Black">
             <TextBlock x:Name="TotalAmountBlock" HorizontalAlignment="Center"/>

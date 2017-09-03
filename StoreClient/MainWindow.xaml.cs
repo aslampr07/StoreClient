@@ -109,24 +109,37 @@ namespace StoreClient
             //Test end here.
             InvoiceTab.SelectedIndex = InvoiceTab.Items.Count - 1;
             InvoiceIDBlock.Text = "ID: " + invoice.ID.ToString();
-            CustomerList.SelectedIndex = 7;
+
+            //The default index for customer list in the invoice section, the content is 'Others'
+            CustomerList.SelectedIndex = 12;
         }
 
         private void InvoiceTab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            uint id = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content).ID;
+            InvoiceSection currentTab = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content);
+            uint id = currentTab.ID;
             InvoiceIDBlock.Text = "ID: " + id;
             TotalBlock.Text = "₹ " + connection.GetInvoiceTotal(id).ToString();
+            CustomerList.SelectedIndex = currentTab.CustomerListComboIndex;
         }
 
         private void CustomerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (InvoiceTab.SelectedIndex != -1)
             {
-                uint Invoiceid = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content).ID;
+                InvoiceSection currentTab = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content);
+                uint Invoiceid = currentTab.ID;
+                currentTab.CustomerListComboIndex = CustomerList.SelectedIndex;
                 int customerID = ((Customer)CustomerList.SelectedItem).ID;
                 connection.ChangeInvoiceOwner(customerID: customerID, InvoiceID: Invoiceid);
             }
+        }
+
+        private void PrintSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            InvoiceSection currentTab = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content);
+            InvoicePrint print = new InvoicePrint(currentTab);
+            print.Print();
         }
     }
 }

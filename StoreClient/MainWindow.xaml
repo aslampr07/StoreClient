@@ -70,6 +70,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
                     <TextBlock x:Name="InvoiceIDBlock" FontSize="25" Margin="10,0,0,0"/>
@@ -78,7 +79,13 @@
                               SelectionChanged="CustomerList_SelectionChanged">
                     </ComboBox>
                 </StackPanel>
-                <TextBlock x:Name="TotalBlock" Grid.Row="1" FontSize="72" Margin="0,0,10,10" HorizontalAlignment="Right">NaN</TextBlock>
+                <Button x:Name="PrintSaveButton" Grid.Row="1" Height="80" 
+                        Background="{x:Null}" BorderThickness="0"
+                        Click="PrintSaveButton_Click"
+                        HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <Image Source="img/Save as_96px.png"/>
+                </Button>
+                <TextBlock x:Name="TotalBlock" Grid.Row="2" FontSize="72" Margin="0,0,10,10" HorizontalAlignment="Right">NaN</TextBlock>
             </Grid>
 
         </Grid>

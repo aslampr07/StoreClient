@@ -74,6 +74,9 @@
     </Compile>
     <Compile Include="SQL\Credit.cs" />
     <Compile Include="SQL\Customer.cs" />
+    <Compile Include="SQL\InvoicePrint.xaml.cs">
+      <DependentUpon>InvoicePrint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SQL\Product.cs" />
     <Compile Include="SQL\SQLEngine.cs" />
     <Compile Include="controls\RibbonIcon.xaml.cs">
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="controls\InvoiceSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SQL\InvoicePrint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +220,9 @@
   <ItemGroup>
     <Resource Include="img\Initiate Money Transfer_48px.png" />
     <Resource Include="img\Request Money_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Save as_96px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
