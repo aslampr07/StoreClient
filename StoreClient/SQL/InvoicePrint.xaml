@@ -19,5 +19,29 @@
                        Text="No: 357" FontSize="11"/>
         </Grid>
         <TextBlock x:Name="NameBlock" Text="Mohammed Aslam" FontSize="11"/>
+        <Grid Margin="0,10,0,0">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Sl."/>
+            <TextBlock Grid.Column="1" Text="Name" HorizontalAlignment="Center" />
+            <TextBlock Grid.Column="2" Text="Qty." HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Text="Amt." HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="4" Text="Tot." HorizontalAlignment="Center"/>
+        </Grid>
+        <TextBlock Text="------------------------------------------------------"/>
+        <StackPanel x:Name="ItemList">
+        </StackPanel>
+        <TextBlock Text="------------------------------------------------------"/>
+        <TextBlock x:Name="FinalAmountBlock" Text="₹143" HorizontalAlignment="Right" Margin="0,0,6,0" FontSize="24"/>
     </StackPanel>
 </UserControl>

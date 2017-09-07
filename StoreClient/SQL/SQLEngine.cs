@@ -266,6 +266,22 @@ namespace StoreClient.SQL
             cm.ExecuteNonQuery();
         }
 
+        public string GetInvoiceOwner(uint InvoiceID)
+        {
+            string query = string.Format("SELECT name FROM customer WHERE" +
+                " id = (SELECT cusid FROM invoice WHERE id = {0})", InvoiceID);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            string customer = (string)cm.ExecuteScalar();
+            return customer;
+        }
+
+        public DateTime GetInvoiceDate(uint InvoiceID)
+        {
+            string query = string.Format("SELECT InvoiceDate FROM Invoice WHERE id = {0}",InvoiceID);
+            MySqlCommand cm = new MySqlCommand(query, connection);
+            DateTime date = (DateTime)cm.ExecuteScalar();
+            return date;
+        }
 
     }
 }

@@ -138,7 +138,7 @@ namespace StoreClient
         private void PrintSaveButton_Click(object sender, RoutedEventArgs e)
         {
             InvoiceSection currentTab = ((InvoiceSection)((TabItem)InvoiceTab.SelectedItem).Content);
-            InvoicePrint print = new InvoicePrint(currentTab);
+            InvoicePrint print = new InvoicePrint(currentTab, connection);
             print.Print();
         }
     }
